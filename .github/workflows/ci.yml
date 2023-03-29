@@ -11,11 +11,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  packages: write
-  contents: write
-  pull-requests: write
-
 env:
   JULIA_CACHE: '1'
   JULIA_NUM_THREADS: 'auto'
@@ -49,16 +44,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Read Julia version
-        uses: SebRollen/toml-action@v1.0.2
-        id: read_toml
-        with:
-          file: 'Manifest.toml'
-          field: 'julia_version'
       - name: Setup Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: ${{ steps.read_toml.outputs.value }}
+          version: '1.8.5'
       - name: Cache Julia dependencies
         uses: actions/cache@v3
         if: ${{ env.JULIA_CACHE != '0'}}
