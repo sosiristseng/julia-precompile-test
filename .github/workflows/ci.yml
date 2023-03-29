@@ -30,12 +30,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - run: echo $GITHUB_WORKSPACE
+      - run: ls -la
       - name: Cache Julia dependencies
         uses: actions/cache@v3
         if: ${{ env.JULIA_CACHE != '0'}}
         with:
           path: ${{ env.JULIA_DEPOT_PATH }}
-          key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('Manifest.toml') }}
+          key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
       - name: Install Julia dependencies
         env:
           PYTHON: ""
