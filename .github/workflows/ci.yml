@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
@@ -16,29 +17,21 @@ permissions:
   pull-requests: write
 
 env:
-  NPROC: '4'
-  JULIA_DEPOT_PATH: '~/.julia'
-  JULIA_NUM_THREADS: 'auto'
+  JULIA_DEPOT_PATH: '/tmp/.julia'
   JULIA_CACHE: '1'
 
 jobs:
   jupyter-book:
     runs-on: ubuntu-latest
+    container:
+      image: julia:1.8.5
+      env:
+        JULIA_NUM_THREADS: 'auto'
     steps:
       - name: Clean up workspace
         uses: colpal/actions-clean@v1
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Read Julia version
-        uses: SebRollen/toml-action@v1.0.2
-        id: read_toml
-        with:
-          file: 'Manifest.toml'
-          field: 'julia_version'
-      - name: Setup Julia
-        uses: julia-actions/setup-julia@v1
-        with:
-          version: ${{ steps.read_toml.outputs.value }}
       - name: Cache Julia dependencies
         uses: actions/cache@v3
         if: ${{ env.JULIA_CACHE != '0'}}
@@ -47,7 +40,7 @@ jobs:
           key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
       - name: Install Julia dependencies
         env:
-          PYTHON: ${{ steps.python.outputs.python-path }}
+          PYTHON: ""
         run: |
           julia --color=yes --project=@. -e 'import Pkg; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
       - name: Julia execution
