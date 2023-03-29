@@ -28,8 +28,6 @@ jobs:
       env:
         JULIA_NUM_THREADS: 'auto'
     steps:
-      - name: Clean up workspace
-        uses: colpal/actions-clean@v1
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Cache Julia dependencies
