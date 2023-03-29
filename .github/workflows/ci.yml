@@ -17,7 +17,7 @@ permissions:
   pull-requests: write
 
 env:
-  JULIA_DEPOT_PATH: '/tmp/.julia'
+  JULIA_DEPOT_PATH: '/srv/juliapkgs'
   JULIA_CACHE: '1'
 
 jobs:
