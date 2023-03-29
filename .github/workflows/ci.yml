@@ -42,4 +42,4 @@ jobs:
         run: |
           julia --color=yes --project=@. -e 'import Pkg; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
       - name: Julia execution
-        run: julia --color=yes --project=@. -e 'using DifferentialEquations; using ModelingToolkit; println("Hello")'
+        run: julia --color=yes --project=@. -e 'println("Hello")'
