@@ -40,6 +40,6 @@ jobs:
         env:
           PYTHON: ""
         run: |
-          julia --color=yes --project=@. -e 'import Pkg; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
+          julia --color=yes --project=@. -e 'import Pkg; Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
       - name: Julia execution
         run: julia --color=yes --project=@. -e 'println("Hello")'
