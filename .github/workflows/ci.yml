@@ -35,7 +35,7 @@ jobs:
         if: ${{ env.JULIA_CACHE != '0'}}
         with:
           path: ${{ env.JULIA_DEPOT_PATH }}
-          key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
+          key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('Manifest.toml') }}
       - name: Install Julia dependencies
         env:
           PYTHON: ""
