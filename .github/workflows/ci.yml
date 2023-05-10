@@ -19,7 +19,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     container:
-      image: julia:1.8.5
+      image: julia:1.9.0
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
