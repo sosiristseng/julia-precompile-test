@@ -39,6 +39,7 @@ jobs:
         env:
           JULIA_PROJECT: ${{ github.workspace }}
         run: julia --color=yes -e 'using DifferentialEquations; println("Hello")'
+
   regular:
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +48,7 @@ jobs:
       - name: Setup Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: '1.8.5'
+          version: '1.9.0'
       - name: Cache Julia dependencies
         uses: actions/cache@v3
         if: ${{ env.JULIA_CACHE != '0'}}
