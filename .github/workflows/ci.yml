@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  JULIA_CACHE: '1'
+  JULIA_CACHE: '2'
   JULIA_NUM_THREADS: 'auto'
 
 jobs:
