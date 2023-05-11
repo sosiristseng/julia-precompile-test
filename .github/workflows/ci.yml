@@ -29,8 +29,8 @@ jobs:
         with:
           path: ~/.julia
           key: ${{ runner.os }}-juliacontainer-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
-          # restore-keys: |
-          #   ${{ runner.os }}-juliacontainer-${{ env.JULIA_CACHE }}
+          restore-keys: |
+            ${{ runner.os }}-juliacontainer-${{ env.JULIA_CACHE }}
       - name: Install Julia dependencies
         env:
           JULIA_PROJECT: ${{ github.workspace }}
@@ -55,8 +55,8 @@ jobs:
         with:
           path: ~/.julia
           key: ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
-          # restore-keys: |
-          #   ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}
+          restore-keys: |
+            ${{ runner.os }}-julia-${{ env.JULIA_CACHE }}
       - name: Install Julia dependencies
         env:
           JULIA_PROJECT: ${{ github.workspace }}
