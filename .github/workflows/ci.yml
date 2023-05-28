@@ -28,7 +28,7 @@ jobs:
         if: ${{ env.JULIA_CACHE != '0'}}
         with:
           path: ~/.julia
-          key: ${{ runner.os }}-juliacontainer-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
+          key: ${{ runner.os }}-container-${{ env.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}
           restore-keys: |
             ${{ runner.os }}-juliacontainer-${{ env.JULIA_CACHE }}
       - name: Install Julia dependencies
@@ -38,7 +38,7 @@ jobs:
       - name: Julia execution
         env:
           JULIA_PROJECT: ${{ github.workspace }}
-        run: julia --color=yes -e 'using DifferentialEquations; println("Hello")'
+        run: julia run.jl
 
   regular:
     runs-on: ubuntu-latest
@@ -64,4 +64,4 @@ jobs:
       - name: Julia execution
         env:
           JULIA_PROJECT: ${{ github.workspace }}
-        run: julia --color=yes -e 'using DifferentialEquations; println("Hello")'
+        run: julia run.jl
