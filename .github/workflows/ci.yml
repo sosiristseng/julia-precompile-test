@@ -14,12 +14,13 @@ concurrency:
 env:
   JULIA_CACHE: '1'
   JULIA_NUM_THREADS: 'auto'
+  JULIA_CPU_TARGET: 'generic;skylake-avx512,clone_all;znver2,clone_all;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     container:
-      image: julia:1.9.1-bullseye
+      image: julia:1.9.1
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
