@@ -71,3 +71,18 @@ jobs:
         env:
           JULIA_PROJECT: ${{ github.workspace }}
         run: julia run.jl
+  cpu:
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        xx: ['1', '2', '3']
+        yy: ['1', '2', '3']
+        zz: ['1', '2', '3']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1'
+          show-versioninfo: 'true'
