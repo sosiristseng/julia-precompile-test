@@ -14,7 +14,7 @@ concurrency:
 env:
   JULIA_CACHE: '1'
   JULIA_NUM_THREADS: 'auto'
-  JULIA_CPU_TARGET: 'generic;skylake-avx512,clone_all;znver2,clone_all;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);icelake-server,clone_all'
+  JULIA_CPU_TARGET: 'generic;skylake,clone_all;znver2,clone_all;sandybridge,-xsaveopt,clone_all;haswell,clone_all;broadwell,clone_all;icelake-server,clone_all;cascadelake,clone_all'
 
 jobs:
   docker:
