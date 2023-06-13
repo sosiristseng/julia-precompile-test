@@ -11,7 +11,6 @@ ENV PATH ${JULIA_PATH}/bin:${PATH}
 
 # Julia environment
 COPY Project.toml Manifest.toml ./
-COPY src/ src
 
 RUN julia --color=yes --project="" -e 'using Pkg, InteractiveUtils; versioninfo(); Pkg.add("IJulia")' && \
     julia --color=yes --project=@. -e 'import Pkg; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
