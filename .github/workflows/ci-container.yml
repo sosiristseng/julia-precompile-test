@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Version info
+        run: julia -e 'using InteractiveUtils; versioninfo()'
       - name: Cache Julia dependencies
         uses: actions/cache@v3
         with:
