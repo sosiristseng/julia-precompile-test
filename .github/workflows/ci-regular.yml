@@ -2,10 +2,6 @@ name: Run regularly
 
 on:
   workflow_call:
-    inputs:
-      JULIA_CACHE:
-        required: true
-        type: string
 
 jobs:
   regular:
@@ -27,18 +23,13 @@ jobs:
         uses: julia-actions/setup-julia@v1
         with:
           version: ${{ steps.read_toml.outputs.value }}
-      - name: CPU arch
-        id: cpu
-        run: echo "arch=$(julia -e 'print(Sys.CPU_NAME)')" >> $GITHUB_OUTPUT
       - name: Cache Julia dependencies
         uses: actions/cache@v3
-        if: ${{ inputs.JULIA_CACHE != '0'}}
         with:
           path: ~/.julia
-          key: ${{ runner.os }}-julia-${{ inputs.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}-${{ steps.cpu.outputs.arch }}
+          key: ${{ runner.os }}-julia-${{ hashFiles('**/Manifest.toml') }}
           restore-keys: |
-            ${{ runner.os }}-julia-${{ inputs.JULIA_CACHE }}-${{ hashFiles('**/Manifest.toml') }}-
-            ${{ runner.os }}-julia-${{ inputs.JULIA_CACHE }}-
+            ${{ runner.os }}-julia-
       - name: Install Julia dependencies
         run: julia --project=@. --color=yes -e 'import Pkg; Pkg.Registry.update(); Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
       - name: Run the code
