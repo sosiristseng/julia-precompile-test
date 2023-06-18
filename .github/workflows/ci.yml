@@ -12,7 +12,6 @@ concurrency:
 
 env:
   JULIA_NUM_THREADS: auto
-  JULIA_CPU_TARGET: generic
 
 jobs:
   container-1:
