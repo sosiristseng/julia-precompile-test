@@ -12,26 +12,19 @@ concurrency:
 
 env:
   JULIA_NUM_THREADS: auto
+  JULIA_CPU_TARGET: generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);broadwell
 
 jobs:
   container-1:
     uses: ./.github/workflows/ci-container.yml
-    with:
-      JULIA_CACHE: '1'
 
   container-2:
     needs: container-1
     uses: ./.github/workflows/ci-container.yml
-    with:
-      JULIA_CACHE: '1'
 
   regular-1:
     uses: ./.github/workflows/ci-regular.yml
-    with:
-      JULIA_CACHE: '1'
 
   regular-2:
     needs: regular-1
     uses: ./.github/workflows/ci-regular.yml
-    with:
-      JULIA_CACHE: '1'
