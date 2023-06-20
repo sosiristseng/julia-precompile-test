@@ -17,5 +17,7 @@ COPY --from=julia:1.9.1 ${JULIA_PATH} ${JULIA_PATH}
 
 FROM base
 
+COPY Project.toml Manifest.toml ./
+
 RUN julia -e 'using InteractiveUtils; versioninfo()' && \
     julia --color=yes --project=@. -e 'import Pkg; Pkg.instantiate(); Pkg.resolve(); Pkg.precompile()'
