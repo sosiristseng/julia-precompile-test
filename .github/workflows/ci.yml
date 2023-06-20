@@ -18,22 +18,18 @@ env:
 jobs:
   container-1:
     uses: ./.github/workflows/ci-container.yml
-
   container-2:
     needs: container-1
     uses: ./.github/workflows/ci-container.yml
-
   container-3:
     needs: container-2
     uses: ./.github/workflows/ci-container.yml
-
   container-4:
     needs: container-3
     uses: ./.github/workflows/ci-container.yml
 
   regular-1:
     uses: ./.github/workflows/ci-regular.yml
-
   regular-2:
     needs: regular-1
     uses: ./.github/workflows/ci-regular.yml
@@ -43,3 +39,15 @@ jobs:
   regular-4:
     needs: regular-3
     uses: ./.github/workflows/ci-regular.yml
+
+  dfile-1:
+    uses: ./.github/workflows/ci-dockerfile.yml
+  dfile-2:
+    needs: dfile-1
+    uses: ./.github/workflows/ci-dockerfile.yml
+  dfile-3:
+    needs: dfile-2
+    uses: ./.github/workflows/ci-dockerfile.yml
+  dfile-4:
+    needs: dfile-3
+    uses: ./.github/workflows/ci-dockerfile.yml

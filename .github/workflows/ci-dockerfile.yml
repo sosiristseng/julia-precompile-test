@@ -1,0 +1,35 @@
+name: Run in docker image
+
+on:
+  workflow_call:
+
+env:
+  DFILE: '.github/Dockerfile'
+  IMAGE_NAME: 'app:test'
+
+jobs:
+  dockerfile:
+    permissions:
+      contents: write
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and cache Docker container
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ${{ env.DFILE }}
+          tags: ${{ env.IMAGE_NAME }}
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha
+      - name: Run code
+        run: >
+          docker run
+          --workdir=/work -v ${{ github.workspace }}:/work
+          ${{ env.IMAGE_NAME }}
+          julia --color=yes --project=@. run.jl
