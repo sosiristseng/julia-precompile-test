@@ -13,7 +13,7 @@ concurrency:
 
 env:
   JULIA_NUM_THREADS: auto
-  JULIA_CPU_TARGET: generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);broadwell
+  JULIA_CPU_TARGET: generic;haswell,clone_all;broadwell,clone_all
 
 jobs:
   container-1:
