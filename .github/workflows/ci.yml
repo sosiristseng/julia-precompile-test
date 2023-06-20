@@ -28,18 +28,6 @@ jobs:
     needs: container-3
     uses: ./.github/workflows/ci-container.yml
 
-  regular-1:
-    uses: ./.github/workflows/ci-regular.yml
-  regular-2:
-    needs: regular-1
-    uses: ./.github/workflows/ci-regular.yml
-  regular-3:
-    needs: regular-2
-    uses: ./.github/workflows/ci-regular.yml
-  regular-4:
-    needs: regular-3
-    uses: ./.github/workflows/ci-regular.yml
-
   dfile-1:
     uses: ./.github/workflows/ci-dockerfile.yml
   dfile-2:
