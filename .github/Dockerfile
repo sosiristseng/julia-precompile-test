@@ -17,6 +17,8 @@ COPY --from=julia:1.9.1 ${JULIA_PATH} ${JULIA_PATH}
 
 FROM base
 
+WORKDIR /app
+
 COPY Project.toml Manifest.toml ./
 
 RUN julia -e 'using InteractiveUtils; versioninfo()' && \
