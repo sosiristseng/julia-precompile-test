@@ -13,7 +13,7 @@ concurrency:
 
 env:
   JULIA_NUM_THREADS: auto
-  JULIA_CPU_TARGET: generic;haswell,clone_all;broadwell,clone_all
+  JULIA_CPU_TARGET: generic;haswell,clone_all;broadwell,clone_all;skylake-avx512,clone_all
 
 jobs:
   container-1:
