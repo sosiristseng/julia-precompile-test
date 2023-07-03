@@ -3,6 +3,9 @@ name: Run in container
 on:
   workflow_call:
 
+env:
+  JULIA_CPU_TARGET: "generic"
+
 jobs:
   docker:
     runs-on: ubuntu-latest
